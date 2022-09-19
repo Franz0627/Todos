@@ -1,0 +1,52 @@
+<h1 align="center">Todo List CRUD</h1>
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" (click)="changeEdit()" id="open" data-bs-target="#exampleModal">
+    Add Todo
+</button>
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Name</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of todoData; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{row.name}}</td>
+            <td>
+                <button class="btn btn-info" (click)="editTodo(row)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+                <button class="btn btn-danger mx-3" (click)="deleteTodo(row._id)" >Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Button trigger modal -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{isEdit == true ? "Edit" : "Add"}} Todo</h5>
+          <button type="button" class="btn-close" id="close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+            <div class="modal-body">
+                <form [formGroup]="formValue">
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Todo</label>
+                        <textarea class="form-control" formControlName="name" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                </form>
+
+            </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" *ngIf="isEdit == false" (click)="addTodo()">Add</button>
+          <button type="button" class="btn btn-primary" *ngIf="isEdit == true" (click)="updateTodo()">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
