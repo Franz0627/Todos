@@ -76,5 +76,24 @@ module.exports = (app) => {
             });
         }
     })
+
+    routes.get("/getTodo", async(req, res) => {
+        try {
+            let id = req.body.id
+            let todo = await getTodo(id);
+            return res.send({
+                status: "success",
+                message: "Todo fetched",
+                result: todo,
+            });
+        } catch (error) {
+            return res.send({
+                status: "failed",
+                message: error.message,
+                result: error,
+            });
+        }
+    })
+
     return routes;
 }
