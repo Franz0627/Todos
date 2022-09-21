@@ -3,7 +3,7 @@
 This is a sample TODO REST API application that uses NodeJS, Express with jest for unit test
 
 ### Prerequisites
-* Angular JS
+* AngularJS
 * NodeJS
 * Git
 * Visual Studio Code/Webstorm for Coding
